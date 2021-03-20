@@ -2,20 +2,22 @@ require('./bootstrap');
 
 Echo.channel('notifications')
     .listen('UserSessionChanged', (e) => {
-        const notificationElement = document.getElementById('notification');
+        console.log(e);
+        // const notificationElement = document.getElementById('notification');
 
-        notificationElement.innerText = e.message;
+        // notificationElement.innerText = e.message;
 
-        notificationElement.classList.remove('invisible');
-        notificationElement.classList.remove('alert-success');
-        notificationElement.classList.remove('alert-danger');
+        // notificationElement.classList.remove('invisible');
+        // notificationElement.classList.remove('alert-success');
+        // notificationElement.classList.remove('alert-danger');
 
-        notificationElement.classList.add('alert-' + e.type);
+        // notificationElement.classList.add('alert-' + e.type);
+        
         toastr.options = {
             "closeButton": true,
             "newestOnTop": false,
             "progressBar": true,
-            "positionClass": "toast-bottom-right",
+            "positionClass": "toast-top-right",
             "preventDuplicates": false,
             "onclick": null,
             "showDuration": "300",
@@ -28,11 +30,8 @@ Echo.channel('notifications')
             "hideMethod": "fadeOut"
         }
 
-        $(document).ready(function onDocumentReady() {
-            setInterval(function doThisEveryTwoSeconds() {
-                toastr.success("Hello World!");
-            }, 2000);   // 2000 is 2 seconds
-        });
+        toastr.info(e.message);
+
     });
 
 Echo.channel('notifications')
