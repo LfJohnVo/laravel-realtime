@@ -9,8 +9,9 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use function Psy\debug;
 
-class UserSessionChanged
+class UserSessionChanged implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -36,6 +37,9 @@ class UserSessionChanged
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        \Log::debug((string)($this->message));
+        \Log::debug((string)($this->type));
+        return new Channel('notifications');
     }
 }
+
