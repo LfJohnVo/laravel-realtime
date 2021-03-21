@@ -1,5 +1,8 @@
 require('./bootstrap');
 
+var Turbolinks = require("turbolinks")
+Turbolinks.start()
+
 Echo.channel('notifications')
     .listen('UserSessionChanged', (e) => {
         console.log(e);
@@ -12,7 +15,7 @@ Echo.channel('notifications')
         // notificationElement.classList.remove('alert-danger');
 
         // notificationElement.classList.add('alert-' + e.type);
-        
+
         toastr.options = {
             "closeButton": true,
             "newestOnTop": false,

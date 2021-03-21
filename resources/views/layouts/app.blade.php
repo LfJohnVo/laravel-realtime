@@ -13,9 +13,16 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <script src="{{ asset('js/app.js') }}"></script>
+    @stack('scripts')
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" data-turbolinks-track="true">
     @stack('styles')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" data-turbolinks-track="true" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" data-turbolinks-track="true" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" />
+    <!-- Scripts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" data-turbolinks-track="true">
+
 </head>
 <body>
     <div id="app">
@@ -73,18 +80,21 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="main py-4">
             <div id="notification" class="alert mx-3 invisible"></div>
             @yield('content')
         </main>
     </div>
-    <script src="{{ asset('js/app.js') }}"></script>
-    @stack('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" />
-    <!-- Scripts -->
 
 <script>
+    document.addEventListener('turbolinks:request-start', () => {
+       document.querySelector('.main').classList.add('fadeout');
+    });
+
+    document.addEventListener('turbolinks:render', () => {
+        document.querySelector('.main').classList.add('fadein');
+    });
+
     // Set the options that I want
     // toastr.options = {
     //     "closeButton": true,
