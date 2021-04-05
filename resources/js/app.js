@@ -18,12 +18,13 @@ Echo.channel('notifications')
 
         toastr.options = {
             "closeButton": true,
+            "debug": true,
             "newestOnTop": false,
             "progressBar": true,
-            "positionClass": "toast-top-right",
+            "positionClass": "toast-bottom-right",
             "preventDuplicates": false,
             "onclick": null,
-            "showDuration": "300",
+            "showDuration": "3000",
             "hideDuration": "1000",
             "timeOut": "5000",
             "extendedTimeOut": "1000",
